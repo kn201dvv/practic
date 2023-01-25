@@ -31,18 +31,19 @@ test('log',async ({page})=>{
         //await links.count();
     //}
 
-   //  for(let i = 0;i<repeats;i++) {
-     //     let article = await page.getByRole('article').filter({hasText: 'Приветствую'}).nth(i);
+     //for(let i = 0;i<repeats;i++) {
+       //   let article = await page.getByRole('article').filter({hasText: 'Приветствую'}).nth(i);
 
-      //    if (article) {
-     //         await page.locator('a:has-text("Нравится")').nth(i).click();
-     //     }
+         // if (article) {
+         //     await page.locator('a:has-text("Нравится")').nth(i).click();
+        //  }
      // }
 
-    for(let i = 0;i < repeats;i++) {
-        let article = await page.getByRole('article');
-        await page.getByRole('article').filter({hasText: search}).locator('a:has-text("Нравится")').nth(i).click();
-    }
+   // for(let i = 0;i < repeats;i++) {
+    //    let article = await page.getByRole('article');
+   //     await page.getByRole('article').filter({hasText: search}).locator('a:has-text("Нравится")').nth(i).click();
+   // }
+
 
     //await article.filter({hasText:search});
 
