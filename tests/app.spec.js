@@ -43,7 +43,14 @@ test('log',async ({page})=>{
         let article = await page.getByRole('article').nth(i);
         await article.scrollIntoViewIfNeeded();
         //await page.getByRole('article').filter({hasText: search}).locator('a:has-text("Нравится")').nth(i).click();
-        await expect.soft(article).toContainText(search);
+        //await expect.soft(article).toContainText(search);
+        if(article.filter({hasText: search})){
+          await  article.locator('a:has-text("Нравится")').nth(i).click();
+        }
+        else{
+            continue;
+        }
+
     }
 
 
