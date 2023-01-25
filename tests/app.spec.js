@@ -40,15 +40,19 @@ test('log',async ({page})=>{
      // }
 
     for(let i = 0;i < repeats;i++) {
-        let article = await page.getByRole('article').nth(i);
-        await article.scrollIntoViewIfNeeded();
+       // let newsBlock = await  page.locator('div[id="MNewsFeed"]');
+        let nextArticle = await page.getByRole('article').nth(i);
+        await nextArticle.scrollIntoViewIfNeeded()
+        //let article = await newsBlock.getByRole('article').filter({hasText: search}).nth(i);
+        await nextArticle.locator('a:has-text("Нравится")').nth(i).click();
+        //await article.scrollIntoViewIfNeeded();
+
+
         //await page.getByRole('article').filter({hasText: search}).locator('a:has-text("Нравится")').nth(i).click();
         //await expect.soft(article).toContainText(search);
-       if(await article.filter({hasText: search})){
-          await  article.locator('a:has-text("Нравится")').nth(i).click();
-        }
-
-
+      // if(await article.filter({hasText: search})){
+          //await  article.locator('a:has-text("Нравится")').nth(i).click();
+     //   }
     }
 
 
