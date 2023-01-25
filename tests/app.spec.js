@@ -47,9 +47,7 @@ test('log',async ({page})=>{
        if(await article.filter({hasText: search})){
           await  article.locator('a:has-text("Нравится")').nth(i).click();
         }
-        else{
-            continue;
-        }
+
 
     }
 
