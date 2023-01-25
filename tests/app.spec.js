@@ -39,11 +39,31 @@ test('log',async ({page})=>{
         //  }
      // }
 
-   // for(let i = 0;i < repeats;i++) {
-    //    let article = await page.getByRole('article');
-   //     await page.getByRole('article').filter({hasText: search}).locator('a:has-text("Нравится")').nth(i).click();
-   // }
+    for(let i = 0;i < repeats;i++) {
+        let article = await page.getByRole('article').nth(i);
+        await article.scrollIntoViewIfNeeded();
+        //await page.getByRole('article').filter({hasText: search}).locator('a:has-text("Нравится")').nth(i).click();
+        await expect.soft(article).toContainText(search);
+    }
 
+
+  //  let article = await page.getByRole('article').filter({hasText: search});
+ //   const lenght = article.count();
+   // for(let i = 0;i < repeats;i++) {
+    //    for(let j = 0;j < lenght;j++){
+      //      if(page.getByRole('article').nth(i)==article.nth(j))
+      //          await article.locator('a:has-text("Нравится")').nth(i).click()
+     //   }
+
+  //  }
+
+    //for(let i = 0;i<repeats;i++) {
+    //   let article = await page.getByRole('article').nth(i);
+
+    // if (article == await page.getByRole('article').filter({hasText: 'Приветствую'})) {
+    //     await page.locator('a:has-text("Нравится")').nth(i).click();
+    //  }
+    // }
 
     //await article.filter({hasText:search});
 
