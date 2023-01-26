@@ -44,7 +44,7 @@ test('log',async ({page})=>{
         let nextArticle = await page.getByRole('article').nth(i);
         await nextArticle.scrollIntoViewIfNeeded()
         //let article = await newsBlock.getByRole('article').filter({hasText: search}).nth(i);
-        await nextArticle.locator('a:has-text("Нравится")').nth(i).click();
+      //  await nextArticle.locator('a:has-text("Нравится")').nth(i).click();
         //await article.scrollIntoViewIfNeeded();
 
 
