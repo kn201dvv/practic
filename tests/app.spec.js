@@ -31,9 +31,9 @@ test('log',async ({page})=>{
         //await links.count();
     //}
      for(let i = 0;i < repeats;i++) {
-         let article = await page.getByRole('article').nth(i) ;
+         let article = await page.getByRole('article').nth(i);
 
-          if (await article.filter({hasText: search}).nth(i) != null) {
+          if (await article.nth(i).filter({hasText: search}) != null) {
               await article.scrollIntoViewIfNeeded();
               await page.locator('a:has-text("Нравится")').nth(i).click();
           }
