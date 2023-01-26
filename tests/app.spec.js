@@ -30,12 +30,15 @@ test('log',async ({page})=>{
         //await expect(links).toContainText(search);
         //await links.count();
     //}
+     for(let i = 0;i < repeats;i++) {
+         let article = await page.getByRole('article').nth(i) ;
 
-     for(let i = 0;i<repeats;i++) {
-         let article = await page.getByRole('article').nth(i);
-         await article.scrollIntoViewIfNeeded();
-          if (article.filter({hasText: search})) {
+          if (await article.filter({hasText: search}).nth(i) != null) {
+              await article.scrollIntoViewIfNeeded();
               await page.locator('a:has-text("Нравится")').nth(i).click();
+          }
+          else{
+              continue;
           }
       }
 
