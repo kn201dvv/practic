@@ -41,7 +41,7 @@ test('log',async ({page})=>{
           if (await run(i, page, search)) {
 
               await article.scrollIntoViewIfNeeded();
-             await page.locator('a:has-text("Нравится")').nth(i-1).click();
+             await page.locator('a:has-text("Нравится")').nth(i).click();
           }
           else{
               continue;
