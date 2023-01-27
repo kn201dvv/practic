@@ -19,6 +19,8 @@ test('log',async ({page})=>{
     await  passField.fill(config.password);
     await  page.locator('button[name="login"]').click();
     await  page.locator('span:has-text("Не сейчас")').click();
+    const str = [];
+    //page.on('console', msg => console.log(msg.text()))
     //await  page.locator('a[name="Лента новостей"]').click();
     //const storyContainer = page.locator('div[class="story_body_container"]');
     //await  page.locator("div:has(p) >> nth=0").click();
@@ -32,10 +34,14 @@ test('log',async ({page})=>{
     //}
      for(let i = 0;i < repeats;i++) {
          let article = await page.getByRole('article').nth(i);
+        // let end = await page.locator('span:has-text("Хотите видеть больше публикаций?")')
+         await article.scrollIntoViewIfNeeded();
+        // await run(i, page, search)
+       //  await endApp(end, page);
+          if (await run(i, page, search)) {
 
-          if (await article.nth(i).filter({hasText: search}) != null) {
               await article.scrollIntoViewIfNeeded();
-              await page.locator('a:has-text("Нравится")').nth(i).click();
+             await page.locator('a:has-text("Нравится")').nth(i-1).click();
           }
           else{
               continue;
@@ -84,4 +90,22 @@ test('log',async ({page})=>{
     await  page.pause()
 })
 
+async function run(i, page, search) {
+    const str = [];
+    const data = (await page.getByRole('article').nth(i).filter({hasText: search}).allInnerTexts()).toString();
+    if(data != str){
+        console.log('success');
+        return true
+    }
+    else{
+        console.log(':(');
+        return  false
+    }
+  //  console.log(data); // will print your data
+}
+async function endApp(end, page){
+    const data = await page.locator('span:has-text("Хотите видеть больше публикаций?")').innerText();
 
+    console.log(data);
+    //return true;
+}
