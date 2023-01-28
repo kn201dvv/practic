@@ -90,6 +90,9 @@ test('log',async ({page})=>{
    // await page.getByRole('button', { name: 'Нравится' }).click();
   //  await  page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
     await  page.pause()
+   // await  page.locator('a[name="Ещё"]').click();
+   // await  page.locator('a[data-sigil="logout"]').click();
+  //  await  page.pause()
 })
 
 async function run(i, page, search) {
@@ -100,7 +103,7 @@ async function run(i, page, search) {
         return true
     }
     else{
-        console.log(':(');
+        console.log('mismatch');
         return  false
     }
   //  console.log(data); // will print your data

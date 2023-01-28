@@ -9,6 +9,7 @@ test('log',async ({page})=>{
     const passField = page.getByTestId('royal_pass');
     const repeats = config.repeatTimes;
     const search = config.searchFor;
+    let articleOthers;
 
     await page.goto('https://www.facebook.com');
    // const context = await browser.newContext();
@@ -24,17 +25,17 @@ test('log',async ({page})=>{
         let articleOne = await page.locator('div[data-pagelet="FeedUnit_0"]')
         let articleTwo = await page.locator('div[data-pagelet="FeedUnit_1"]')
         let articleOthers = await page.locator('div[data-pagelet="FeedUnit_{n}"]')
-        if(i==0){
+              if(i==0){
             await articleOne.scrollIntoViewIfNeeded();
-            await page.getByRole('button', { name: 'Нравится' }).filter({ hasText: 'Нравится' }).nth(i).click();
+            await page.getByRole('button', { name: 'Нравится' }).first().filter({ hasText: 'Нравится' }).click();
         }
-        if(i==1){
+           if(i==1){
             await articleTwo.scrollIntoViewIfNeeded();
-            await page.getByRole('button', { name: 'Нравится' }).filter({ hasText: 'Нравится' }).nth(i).click();
+            await page.getByRole('button', { name: 'Нравится' }).nth(1).filter({ hasText: 'Нравится' }).click();
         }
         if(i>1){
             await articleOthers.nth(i-2).scrollIntoViewIfNeeded();
-            await page.getByRole('button', { name: 'Нравится' }).filter({ hasText: 'Нравится' }).nth(i-2).click();
+            await page.getByRole('button', { name: 'Нравится' }).nth(i).filter({ hasText: 'Нравится' }).click();
         }
     }
             //await page.getByRole('button', { name: 'Нравится' }).filter({ hasText: 'Нравится' }).first().click();
@@ -45,3 +46,16 @@ test('log',async ({page})=>{
    // await context.close();
    // await browser.close();
 })
+//async function find(article, search) {
+  //  const str = [];
+  //  const data = (await article.filter({hasText: search}).allInnerTexts()).toString();
+  //  if(data != str){
+  //      console.log('success');
+  //      return true
+  //  }
+  //  else{
+  //      console.log('mismatch');
+   //     return  false
+  //  }
+    //  console.log(data); // will print your data
+//}
