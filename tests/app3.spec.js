@@ -20,15 +20,16 @@ test('log',async ({page})=>{
     await  page.locator('button[name="login"]').click();
     await  page.locator('span:has-text("Не сейчас")').click();
     const str = [];
-    let liked = 20;
-
-    for(let i = 0;liked >= repeats;i++) {
+    let liked = 0;
+    let i = 0
+    while(liked < repeats){
         let article = await page.getByRole('article').nth(i);
+        i++;
         // let end = await page.locator('span:has-text("Хотите видеть больше публикаций?")')
         await article.scrollIntoViewIfNeeded();
         // await run(i, page, search)
         //  await endApp(end, page);
-        if (await run(i, page, search)) {
+        if (await run(i-1, page, search)) {
 
             await article.scrollIntoViewIfNeeded();
             await article.locator('a:has-text("Нравится")').click();
@@ -39,6 +40,7 @@ test('log',async ({page})=>{
             continue;
             test.setTimeout(10000)
         }
+
     }
     await  page.pause()
 })
