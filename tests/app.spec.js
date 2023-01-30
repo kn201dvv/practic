@@ -20,18 +20,7 @@ test('log',async ({page})=>{
     await  page.locator('button[name="login"]').click();
     await  page.locator('span:has-text("Не сейчас")').click();
     const str = [];
-    //page.on('console', msg => console.log(msg.text()))
-    //await  page.locator('a[name="Лента новостей"]').click();
-    //const storyContainer = page.locator('div[class="story_body_container"]');
-    //await  page.locator("div:has(p) >> nth=0").click();
-    //let list = await page.$$('p');
 
-    //for(let i =0;i<repeats;i++){
-        //await page.locator('div[class="story_body_container"]:has(p)').nth(i).scrollIntoViewIfNeeded();
-        //const links = page.locator('div[class="story_body_container"]:has(p)').first();
-        //await expect(links).toContainText(search);
-        //await links.count();
-    //}
      for(let i = 0;i < repeats;i++) {
          let article = await page.getByRole('article').nth(i);
         // let end = await page.locator('span:has-text("Хотите видеть больше публикаций?")')
@@ -49,6 +38,19 @@ test('log',async ({page})=>{
               test.setTimeout(10000)
           }
       }
+    await  page.pause()
+    //page.on('console', msg => console.log(msg.text()))
+    //await  page.locator('a[name="Лента новостей"]').click();
+    //const storyContainer = page.locator('div[class="story_body_container"]');
+    //await  page.locator("div:has(p) >> nth=0").click();
+    //let list = await page.$$('p');
+
+    //for(let i =0;i<repeats;i++){
+    //await page.locator('div[class="story_body_container"]:has(p)').nth(i).scrollIntoViewIfNeeded();
+    //const links = page.locator('div[class="story_body_container"]:has(p)').first();
+    //await expect(links).toContainText(search);
+    //await links.count();
+    //}
 
     //for(let i = 0;i < repeats;i++) {
        // let newsBlock = await  page.locator('div[id="MNewsFeed"]');
@@ -89,7 +91,6 @@ test('log',async ({page})=>{
 
    // await page.getByRole('button', { name: 'Нравится' }).click();
   //  await  page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
-    await  page.pause()
    // await  page.locator('a[name="Ещё"]').click();
    // await  page.locator('a[data-sigil="logout"]').click();
   //  await  page.pause()
