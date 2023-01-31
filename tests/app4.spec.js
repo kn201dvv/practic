@@ -62,3 +62,10 @@ test('log',async ({page})=>{
     await page.getByRole('button', { name: 'Так, видалити' }).click();
     await page.pause()
 })
+
+//loginAcc: kn201_dvv@student.ztu.edu.ua
+//passwordAcc: '589234'
+//sendTo: ntrt2036@gmail.com
+//theme: this is a new message
+//text: hello!)
+//name: 2

@@ -12,6 +12,8 @@
     "expected-condition-playwright": "^1.0.1"
   },
   "dependencies": {
-    "js-yaml": "^4.1.0"
+    "js-yaml": "^4.1.0",
+    "playwright": "^1.30.0",
+    "scroll-into-view-if-needed": "^3.0.4"
   }
 }

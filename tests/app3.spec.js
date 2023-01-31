@@ -1,8 +1,8 @@
 const {test, expect} = require ('@playwright/test')
 const yaml = require('js-yaml')
 const fs = require('fs')
+const scrollIntoView = require("scroll-into-view-if-needed");
 const config = yaml.load(fs.readFileSync('./tests/info.yml', 'utf8'));
-
 
 test('log',async ({page})=>{
     const emailField = page.locator('input[name="email"]');
@@ -19,17 +19,21 @@ test('log',async ({page})=>{
     await  passField.fill(config.password);
     await  page.locator('button[name="login"]').click();
     await  page.locator('span:has-text("Не сейчас")').click();
-
+    let end = page.getByText('Хотите видеть больше публикаций?')
     let liked = 0;
     let i = 0
     while(liked < repeats){
 
         let article = await page.getByRole('article').nth(i);
+
         i++;
-        if(await endApp(page)){
-            break
+       if(await end.isVisible()){
+           liked = repeats
         }
-        await article.scrollIntoViewIfNeeded();
+        else{
+            await article.scrollIntoViewIfNeeded();
+        }
+
         if (await run(i-1, page, search)) {
 
             await article.scrollIntoViewIfNeeded();
@@ -56,14 +60,6 @@ async function run(i, page, search) {
         return  false
     }
     //  console.log(data); // will print your data
-}
-async function endApp(page){
-    if(await page.isVisible('span:has-text("Хотите видеть больше публикаций?")')){
-        console.log("checked")
-        return true
-    }
-    else{
-        console.log("no element")
-    }
+
     //return true;
 }
