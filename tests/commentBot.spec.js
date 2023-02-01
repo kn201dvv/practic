@@ -32,7 +32,7 @@ test('log',async ({page})=>{
         await article.scrollIntoViewIfNeeded();
 
         const articleContent = await article.innerText();
-        console.info("content: " +articleContent+ " \n");
+        console.info(`content: ${articleContent}  \n`);
         if (articleContent.toLowerCase().includes(search.toLowerCase())) {
             const commentElement =  await article.getByRole('link',{name: 'Комментировать'});
             await commentElement.click();
@@ -47,10 +47,9 @@ test('log',async ({page})=>{
            // await likeElement.click();
            // liked ++;
         } else {
-            console.info("The article content does not include " +search+ " - skipped");
+            console.info(`The article content does not include ${search} - skipped`);
         }
         await page.waitForTimeout(3_000);
         i++;
     }
-
 })
